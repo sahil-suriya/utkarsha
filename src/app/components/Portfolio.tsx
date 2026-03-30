@@ -1,4 +1,5 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { motion } from "motion/react";
 
 export function Portfolio() {
   return (
@@ -108,12 +109,18 @@ function PortfolioImage({
   tall?: boolean;
 }) {
   return (
-    <div className={`overflow-hidden border border-black/10 hover:border-black transition-colors ${tall ? 'aspect-[3/4]' : 'aspect-square'}`}>
+    <motion.div 
+      className={`border border-black/10 transition-colors ${tall ? 'aspect-[3/4]' : 'aspect-square'}`}
+      style={{ transformStyle: "preserve-3d" }}
+      whileHover={{ scale: 1.02, rotateY: -10, rotateX: 5, z: 30, boxShadow: "0px 25px 40px -15px rgba(0,0,0,0.3)" }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+    >
       <ImageWithFallback
         src={src}
         alt={alt}
-        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        className="w-full h-full object-cover rounded-sm shadow-xl"
+        style={{ transform: "translateZ(20px)" }} // Pops image out from card background
       />
-    </div>
+    </motion.div>
   );
 }

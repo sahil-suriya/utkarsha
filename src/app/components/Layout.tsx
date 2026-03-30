@@ -1,9 +1,11 @@
-import { Outlet, NavLink } from "react-router";
+import { Outlet, NavLink, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 export function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { path: "/", label: "Cover" },
@@ -40,20 +42,26 @@ export function Layout() {
           </button>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex gap-6 text-sm">
+          <div className="hidden md:flex gap-6 text-sm" style={{ perspective: "1000px" }}>
             {navItems.slice(0, 7).map((item) => (
-              <NavLink
+              <motion.div
                 key={item.path}
-                to={item.path}
-                end={item.path === "/"}
-                className={({ isActive }) =>
-                  `hover:text-gray-300 transition-colors ${
-                    isActive ? "border-b border-white" : ""
-                  }`
-                }
+                whileHover={{ scale: 1.1, rotateY: 15, rotateX: -5 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                style={{ transformStyle: "preserve-3d", display: "inline-block" }}
               >
-                {item.label}
-              </NavLink>
+                <NavLink
+                  to={item.path}
+                  end={item.path === "/"}
+                  className={({ isActive }) =>
+                    `hover:text-gray-300 transition-colors block ${
+                      isActive ? "border-b border-white" : ""
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -83,8 +91,19 @@ export function Layout() {
       </nav>
 
       {/* Main content */}
-      <main className="pt-16">
-        <Outlet />
+      <main className="pt-16" style={{ perspective: "1500px", overflowX: "hidden" }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, rotateY: -90, z: -300 }}
+            animate={{ opacity: 1, rotateY: 0, z: 0 }}
+            exit={{ opacity: 0, rotateY: 90, z: -300 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} /* Custom fluid ease curve */
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );
