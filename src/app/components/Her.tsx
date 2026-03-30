@@ -48,4 +48,9 @@ export function Her() {
                 <span>{item}</span>
               </p>
             ))}
-          </d
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
