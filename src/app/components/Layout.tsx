@@ -15,9 +15,7 @@ export function Layout() {
     { path: "/skills", label: "Skills" },
     { path: "/achievements", label: "Achievements" },
     { path: "/experience", label: "Experience" },
-    { path: "/projects", label: "Projects" },
     { path: "/hobbies", label: "Hobbies" },
-    { path: "/portfolio", label: "Portfolio" },
     { path: "/strengths", label: "Strengths" },
     { path: "/media-work", label: "Media Work" },
     { path: "/declaration", label: "Declaration" },
@@ -42,8 +40,8 @@ export function Layout() {
           </button>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex gap-6 text-sm" style={{ perspective: "1000px" }}>
-            {navItems.slice(0, 7).map((item) => (
+          <div className="hidden md:flex items-center justify-end gap-4 text-xs whitespace-nowrap overflow-x-auto max-w-[78%]" style={{ perspective: "1000px" }}>
+            {navItems.map((item) => (
               <motion.div
                 key={item.path}
                 whileHover={{ scale: 1.1, rotateY: 15, rotateX: -5 }}
