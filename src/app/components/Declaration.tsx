@@ -51,7 +51,7 @@ export function Declaration() {
                 className="text-4xl mb-2"
                 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 400, fontStyle: 'italic' }}
               >
-                Sophia Anderson
+                Utkarsha Katoch
               </p>
             </div>
           </div>
@@ -69,7 +69,7 @@ export function Declaration() {
             className="text-sm mt-2"
             style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 400 }}
           >
-            sophia.anderson@email.com | +91 98765 43210
+            utkarshakatochl@gmail.com | +91 62307 29770
           </p>
         </div>
       </div>

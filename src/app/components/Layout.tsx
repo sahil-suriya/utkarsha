@@ -16,8 +16,6 @@ export function Layout() {
     { path: "/achievements", label: "Achievements" },
     { path: "/experience", label: "Experience" },
     { path: "/hobbies", label: "Hobbies" },
-    { path: "/strengths", label: "Strengths" },
-    { path: "/media-work", label: "Media Work" },
     { path: "/declaration", label: "Declaration" },
   ];
 
